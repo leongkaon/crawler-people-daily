@@ -54,7 +54,7 @@ library(xmlview)
 ## 只選取頭版                             ##
 ############################################
 # file input
-wd = "/home/leongkaon/Documents/Text_mining/new_data_html/"
+wd = "/Text_mining/new_data_html/"
 lf_full_true = list.files(wd, full.names = TRUE, pattern = ".html$")
 lf_full_false = list.files(wd, full.names = FALSE, pattern = ".html$")
 
@@ -64,7 +64,7 @@ file_path = lf_full_true[grepl(pattern,lf_full_false)]
 write_names = sub(".html","",lf_full_false[grepl(pattern,lf_full_false)]) # 輸出檔案前段名稱
 
 # file output
-file_output = "/home/leongkaon/Documents/Text_mining/people_daily_front_page_txt/"
+file_output = "/Text_mining/people_daily_front_page_txt/"
 
 library(xml2)
 library(xmlview)
@@ -165,81 +165,4 @@ nchar('U3e34653cº')
 #################################################
 ## 有曬頭版堆txt檔，你知架啦，又開始漫長的旅程 ##
 #################################################
-
-
-
-
-
-##############
-## Appendix ##
-##############
-
-国民党当局破坏荷泽协议    蓄意放水淹我解放区    不顾七百万人民生命图逞内战阴谋    中共中央发言人表示坚决反对
-
-国民党当局破坏荷泽协议  蓄意放水淹我解放区  不顾七百万人民生命图逞内战阴谋  中共中央发言人表示坚决反对
-
-
-# 2.每篇報導一個檔案,輸出.txt
-
-## 拎1946測試,.html檔案數為495個
-### 刪除內文的\r\n\t及空白
-### 刪除內文的標題
-### 刪除內文【新华社延安十日电】
-
-file_path = lf_full_true[grepl("^1946",lf_full_false)]
-
-doc = read_html(file_path[1])
-xpath = "//*[@class='article']" # 內文
-text = xml_text(xml_find_all(doc,xpath))
-
-### 刪除內文的\r\n\t及空白
-text_no_space = gsub("\r|\t|\n| ","",text)
-
-### 刪除內文的標題及「專欄:」
-## 尋找內文中是否有標題,標題起始字元+標題長度 為需刪去內容
-xpath2 = "//*[@class='box']/h2" #標題
-title = xml_text(xml_find_all(doc,xpath2))
-title_no_space = gsub(" ","",title)
-
-# 是否找到內文的標題?
-for (i in 1:length(title)){
-        cat(grepl(title_no_space[i], text_no_space[i]), sep="\n")
-}
-
-# 刪除內文一開始至標題
-loc = regexpr(title_no_space[1], text_no_space[1])
-text_no_title =
-        substr(
-                text_no_space[1],
-                as.numeric(loc) + attr(loc, "match.length"),
-                nchar(text_no_space[1])
-        )
-
-### 刪除內文【新华社延安十日电】# 暫不考慮到【可能出現兩次,因資料只有極少量此情況,無謂浪費效能
-loc1 = regexpr("【", text_no_title)
-loc2 = regexpr("】", text_no_title)
-
-text_clear = sub(substr(text_no_title, loc1, loc2),"",
-                 text_no_title)
-
-writeLines(text_clear,"")
-
-##########
-
-
-sub("》","】","AAA》AA")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
