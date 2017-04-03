@@ -14,7 +14,7 @@ library(xmlview)
 #-------------------
 
 # 1.計算.html每年檔案數
-# wd = "/home/leongkaon/Documents/Text_mining/new_data_html"
+# wd = "/Text_mining/new_data_html"
 # lf_full_true = list.files(wd, full.names = TRUE, pattern = ".html$")
 # lf_full_false = list.files(wd, full.names = FALSE, pattern = ".html$")
 
