@@ -35,7 +35,7 @@ system.time(
                         message(page)
                         datePage = paste(date,page,sep = "-")
                         tryCatch(download.file(paste0("http://www.ziliaoku.org/rmrb/",datePage),
-                                               destfile = paste0("D:/家安的TextMining/new_data_20170208/",
+                                               destfile = paste0("new_data_20170208/",
                                                                  paste0(strsplit(as.character(date),split="-")[[1]],collapse=""),
                                                                  sprintf("%02d",page),".html")
                         ),
@@ -79,11 +79,11 @@ system.time(
 ## 1024 bytes  = 1 KB
 ## 1024 KB = 1 MB
 
-file.size("D:/家安的TextMining/new_data_20170208/1997062612.html")
-file.size("D:/家安的TextMining/new_data_20170208/1962012806.html")
+file.size("/new_data_20170208/1997062612.html")
+file.size("/new_data_20170208/1962012806.html")
 
-lf = list.files("D:/家安的TextMining/new_data_20170208", pattern = ".html$", full.names= TRUE)
-lf2 = list.files("D:/家安的TextMining/new_data_20170208", pattern = ".html$", full.names= FALSE)
+lf = list.files("/new_data_20170208", pattern = ".html$", full.names= TRUE)
+lf2 = list.files("/new_data_20170208", pattern = ".html$", full.names= FALSE)
 # 找出空白檔案
 empty_file_full = lf[file.size(lf) < 5000]
 empty_file = lf2[file.size(lf) < 5000]
