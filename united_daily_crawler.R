@@ -5,7 +5,6 @@ path_output = '/home/leongkaon/textmining/united_daily_txt/key_word_chinese/'
 
 # i = 89143
 # Start
-t1 = vector()    # 空白頁記錄
 system.time(
         for (i in 1:74350){
                 doc = read_html(
