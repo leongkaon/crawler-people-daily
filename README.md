@@ -8,4 +8,6 @@
 
 
 # crawler-united-daily
-聯合報爬蟲
+聯合報爬蟲(united_daily_crawler.R)
+輸出為.txt
+要設定關鍵字，會有少數重複內容
